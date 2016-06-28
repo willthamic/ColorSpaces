@@ -1,0 +1,25 @@
+.superCube {
+	position:relative;
+	transform-style: preserve-3d;
+	perspective-origin: 50% 50%;
+	margin:auto;
+	margin-top:100px;
+	transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.cube {
+	position:absolute;
+	transform-style: preserve-3d;
+	perspective-origin: 50% 50%;
+	margin:0;
+}
+
+.face {
+	position:absolute;
+	border:1px solid black;
+	margin:0;
+}
+
+body, html {
+	margin:0;
+}
