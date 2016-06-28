@@ -11,8 +11,10 @@
 	<body>
 		<div id="rgb" class="superCube"></div>
 		<div id="hsl" class="superCube"></div>
+		<div id="yuv" class="superCube"></div>
 	</body>
 
-	<script></script>
-	<!--<script>instHSL({xCount:5, xWidth:"50px", xSpace:"50px"})</script>-->
+	<script>instSCube("#rgb", "rgb", {Count:5, Width:"50px", Space:"50px"}, "rgb")</script>
+	<script>instSCube("#hsl", "hsl", {Count:5, Width:"50px", Space:"50px"}, "hsl")</script>
+	<script>instSCube("#yuv", "yuv", {Count:5, Width:"50px", Space:"50px"}, "yuv")</script>
 </html>

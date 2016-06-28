@@ -37,11 +37,17 @@ function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 	transform('#' + id + '_f', {zpos:'calc(' + zlen + ' /  2)', xpos:'calc((' + zlen + ' - ' + xlen + ') / 2)', ypos:'calc((' + zlen + ' - ' + ylen + ') / 2)'})
 }
 
-function instSCube (target, type, mode, sCube) {
+function instSCube (target, type, sCube, id = undefined) {
 
 	// sCubeFill(mode);
 
-	if (mode == "simple") {
+	if (id == undefined || id == "") {
+		id = "";
+	} else {
+		id += "_";
+	}
+
+	if (objectSize(sCube) == 3) {
 		sCube.xCount = sCube.Count;
 		sCube.yCount = sCube.Count;
 		sCube.zCount = sCube.Count;
@@ -66,10 +72,16 @@ function instSCube (target, type, mode, sCube) {
 	for (x = 0; x < sCube.xCount; x++) {
 		for (y = 0; y < sCube.yCount; y++) {
 			for (z = 0; z < sCube.zCount; z++) {
-				objId = "x" + x + "y" + y + "z" + z;
+				objId = id + "x" + x + "y" + y + "z" + z;
 				objClass = "x" + x + " y" + y + " z" + z;
 				instCube(target, objId, sCube.xWidth, sCube.yWidth, sCube.zWidth);
-				transform("#" + objId, {xpos:'calc(' + x + '*(' + sCube.xWidth + ' + ' + sCube.xSpace + '))', ypos:'calc(' + y + '*(' + sCube.yWidth + ' + ' + sCube.ySpace + '))', zpos:'calc((' + z + ' - (' + sCube.zCount + ' - 1) / 2 ) * (' + sCube.zWidth + ' + ' + sCube.zSpace + '))'});
+				transform("#" + objId, 
+					{
+						xpos:'calc(' + x + '*(' + sCube.xWidth + ' + ' + sCube.xSpace + '))', 
+						ypos:'calc(' + y + '*(' + sCube.yWidth + ' + ' + sCube.ySpace + '))', 
+						zpos:'calc((' + z + ' - (' + sCube.zCount + ' - 1) / 2 ) * (' + sCube.zWidth + ' + ' + sCube.zSpace + '))'
+					});
+				$("#" + objId).children().addClass(objClass);
 				if (type == "rgb") {
 					var color_r = Math.round(255/(sCube.xCount-1)*x);
 					var color_g = Math.round(255/(sCube.yCount-1)*y);
@@ -92,46 +104,6 @@ function instSCube (target, type, mode, sCube) {
 			}
 		}
 	}
-}
-
-function sCubeFill (mode) {
-
-	if (!sCubeVerify(mode)) {
-		sCube.Count = 5;
-		sCube.Width = "50px";
-		sCube.Space = "50px";
-	}
-
-	sCube.xCount = sCube.Count;
-	sCube.yCount = sCube.Count;
-	sCube.zCount = sCube.Count;
-	sCube.xWidth = sCube.Width;
-	sCube.yWidth = sCube.Width;
-	sCube.zWidth = sCube.Width;
-	sCube.xSpace = sCube.Space;
-	sCube.ySpace = sCube.Space;
-	sCube.zSpace = sCube.Space;
-
-}
-
-function sCubeVerify (mode) {
-	var bool = true;
-	if (mode == "simple") {
-		if (sCube.Count == undefined || sCube.Count < 1 || Math.floor(sCube.Count) != sCube.Count) bool = false;
-		if (sCube.Width == undefined || parseInt(sCube.Width) == NaN) bool = false;
-		if (sCube.Space == undefined || parseInt(sCube.Space) == NaN) bool = false;
-	} else if (mode == "advanced") {
-		if (sCube.xCount == undefined || sCube.xCount < 1 || Math.floor(sCube.xCount) != sCube.xCount) bool = false;
-		if (sCube.xWidth == undefined || parseInt(sCube.xWidth) == NaN) bool = false;
-		if (sCube.xSpace == undefined || parseInt(sCube.xSpace) == NaN) bool = false;
-		if (sCube.yCount == undefined || sCube.yCount < 1 || Math.floor(sCube.yCount) != sCube.yCount) bool = false;
-		if (sCube.yWidth == undefined || parseInt(sCube.yWidth) == NaN) bool = false;
-		if (sCube.ySpace == undefined || parseInt(sCube.ySpace) == NaN) bool = false;
-		if (sCube.zCount == undefined || sCube.zCount < 1 || Math.floor(sCube.zCount) != sCube.zCount) bool = false;
-		if (sCube.zWidth == undefined || parseInt(sCube.zWidth) == NaN) bool = false;
-		if (sCube.zSpace == undefined || parseInt(sCube.zSpace) == NaN) bool = false;
-	}
-	return bool;
 }
 
 function yuv2rgb(y,u,v) {
