@@ -81,7 +81,7 @@ function instSCube (target, type, sCube, id = undefined) {
 						ypos:'calc(' + y + '*(' + sCube.yWidth + ' + ' + sCube.ySpace + '))', 
 						zpos:'calc((' + z + ' - (' + sCube.zCount + ' - 1) / 2 ) * (' + sCube.zWidth + ' + ' + sCube.zSpace + '))'
 					});
-				$("#" + objId).children().addClass(objClass);
+				$("#" + objId).addClass(objClass);
 				if (type == "rgb") {
 					var color_r = Math.round(255/(sCube.xCount-1)*x);
 					var color_g = Math.round(255/(sCube.yCount-1)*y);
