@@ -34,3 +34,16 @@ body, html {
 	from {transform:rotateX(-20deg) rotateY(0deg) rotateZ(0deg);}
 	to {transform:rotateX(-20deg) rotateY(360deg) rotateZ(0deg);}
 }
+
+
+
+
+
+input {
+	width:100px;
+	text-align:right;
+}
+
+td:nth-child(2) {
+	text-align:right;
+}

@@ -57,6 +57,7 @@ function instSCube (target, type, sCube, id = undefined) {
 		sCube.xSpace = sCube.Space;
 		sCube.ySpace = sCube.Space;
 		sCube.zSpace = sCube.Space;
+		console.log("tick");
 	}
 
 	max = Math.max(parseInt(sCube.xWidth) + parseInt(sCube.xSpace), parseInt(sCube.yWidth) + parseInt(sCube.ySpace), parseInt(sCube.zWidth) + parseInt(sCube.zSpace));
@@ -64,7 +65,7 @@ function instSCube (target, type, sCube, id = undefined) {
 	if (parseInt(sCube.yWidth) + parseInt(sCube.ySpace) == max) {max = 'calc(' + sCube.yWidth + ' * ' + sCube.yCount + ' + ' + sCube.ySpace + ' * ' + (sCube.yCount - 1) + ')'};
 	if (parseInt(sCube.zWidth) + parseInt(sCube.zSpace) == max) {max = 'calc(' + sCube.zWidth + ' * ' + sCube.zCount + ' + ' + sCube.zSpace + ' * ' + (sCube.zCount - 1) + ')'};
 
-	$(target).val = "";
+	$(target).empty();
 
 	$(target).css("width", max);
 	$(target).css("height", max);
@@ -93,7 +94,7 @@ function instSCube (target, type, sCube, id = undefined) {
 					var color_s = Math.round(100/(sCube.yCount-1)*y);
 					var color_l = Math.round(100/(sCube.zCount-1)*z);
 
-					$("#" + objId).children().css( 'background-color', 'hsl(' + color_h + ', ' + color_s + '%, ' + color_l + '%)');
+					$("#" + objId).children().css( 'background-color', 'hsla(' + color_h + ', ' + color_s + '%, ' + color_l + '%, 1)');
 				} else if (type == "yuv") {
 					var color_y = Math.round(255/(sCube.xCount-1)*x);
 					var color_u = Math.round(255/(sCube.yCount-1)*y);

@@ -9,12 +9,75 @@
 	</head>
 
 	<body>
-		<div id="rgb" class="superCube"></div>
+
+		<div class="container">
+			<div class="controls">
+				<table>
+					<tr>
+						<td>Color Format</td>
+						<td><select>
+							<option value="RGB">RGB</option>
+							<option value="HSL">HSL</option>
+							<option value="YUV">YUV</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Count</td>
+						<td><input min="2" type="number"></td>
+					</tr>
+					<tr>
+						<td>Width</td>
+						<td><input type="number"></td>
+						<td><select>
+							<option value="px">px</option>	
+							<option value="em">em</option>	
+							<option value="vw">vw</option>	
+							<option value="vh">vh</option>	
+							<option value="ex">ex</option>	
+							<option value="ch">ch</option>	
+							<option value="rem">rem</option>	
+							<option value="vmin">vmin</option>	
+							<option value="vmax">vmax</option>	
+							<option value="cm">cm</option>	
+							<option value="mm">mm</option>	
+							<option value="in">in</option>	
+							<option value="pt">pt</option>	
+							<option value="pc">pc</option>	
+						</select></td>
+					</tr>
+					<tr>
+						<td>Space</td>
+						<td><input type="number"></td>
+						<td><select>
+							<option value="px">px</option>	
+							<option value="em">em</option>	
+							<option value="vw">vw</option>	
+							<option value="vh">vh</option>	
+							<option value="ex">ex</option>	
+							<option value="ch">ch</option>	
+							<option value="rem">rem</option>	
+							<option value="vmin">vmin</option>	
+							<option value="vmax">vmax</option>	
+							<option value="cm">cm</option>	
+							<option value="mm">mm</option>	
+							<option value="in">in</option>	
+							<option value="pt">pt</option>	
+							<option value="pc">pc</option>	
+						</select></td>
+					</tr>
+				</table>
+			</div>
+			<div id="superCube" class="superCube">
+
+			</div>
+		</div>
+
+		<!--<div id="rgb" class="superCube"></div>
 		<div id="hsl" class="superCube"></div>
-		<div id="yuv" class="superCube"></div>
+		<div id="yuv" class="superCube"></div>-->
 	</body>
 
-	<script>instSCube("#rgb", "rgb", {Count:5, Width:"50px", Space:"50px"}, "rgb")</script>
+	<!--<script>instSCube("#rgb", "rgb", {Count:5, Width:"50px", Space:"50px"}, "rgb")</script>
 	<script>instSCube("#hsl", "hsl", {Count:5, Width:"50px", Space:"50px"}, "hsl")</script>
-	<script>instSCube("#yuv", "yuv", {Count:5, Width:"50px", Space:"50px"}, "yuv")</script>
+	<script>instSCube("#yuv", "yuv", {Count:5, Width:"50px", Space:"50px"}, "yuv")</script>-->
 </html>
