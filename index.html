@@ -11,86 +11,123 @@
 	<body>
 
 		<div class="container">
-			<form class="controls">
-				<table>
-					<tr>
-						<td>Color Format</td>
-						<td><select id="color">
-							<option value="rgb">RGB</option>
-							<option value="hsl">HSL</option>
-							<option value="yuv">YUV</option>
-						</select></td>
-					</tr>
-					<tr>
-						<td>Count</td>
-						<td><input id="count" min="2" type="number" value="5"></td>
-					</tr>
-					<tr>
-						<td>Width</td>
-						<td><input id="widthValue" type="number" value="50"></td>
-						<td><select id="widthUnit">
-							<option value="px">px</option>	
-							<option value="em">em</option>	
-							<option value="vw">vw</option>	
-							<option value="vh">vh</option>	
-							<option value="ex">ex</option>	
-							<option value="ch">ch</option>	
-							<option value="rem">rem</option>	
-							<option value="vmin">vmin</option>	
-							<option value="vmax">vmax</option>	
-							<option value="cm">cm</option>	
-							<option value="mm">mm</option>	
-							<option value="in">in</option>	
-							<option value="pt">pt</option>	
-							<option value="pc">pc</option>	
-						</select></td>
-					</tr>
-					<tr>
-						<td>Space</td>
-						<td><input id="spaceValue" type="number" value="50"></td>
-						<td><select id="spaceUnit">
-							<option value="px">px</option>	
-							<option value="em">em</option>	
-							<option value="vw">vw</option>	
-							<option value="vh">vh</option>	
-							<option value="ex">ex</option>	
-							<option value="ch">ch</option>	
-							<option value="rem">rem</option>	
-							<option value="vmin">vmin</option>	
-							<option value="vmax">vmax</option>	
-							<option value="cm">cm</option>	
-							<option value="mm">mm</option>	
-							<option value="in">in</option>	
-							<option value="pt">pt</option>	
-							<option value="pc">pc</option>	
-						</select></td>
-					</tr>
-					<tr>
-						<td></td>
+			<div>
+				<form class="controls">
+					<table>
+						<tr>
+							<td>Simple:</td>
+						</tr>
+						<tr>
+							<td>Color Format</td>
+							<td><select id="color">
+								<option value="rgb">RGB</option>
+								<option value="hsl">HSL</option>
+								<option value="yuv">YUV</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>Count</td>
+							<td><input id="count" min="2" type="number" value="5"></td>
+						</tr>
+						<tr>
+							<td>Width</td>
+							<td><input id="widthValue" type="number" value="50"></td>
+							<td><select id="widthUnit">
+								<option value="px">px</option>	
+								<option value="em">em</option>	
+								<option value="vw">vw</option>	
+								<option value="vh">vh</option>	
+								<option value="ex">ex</option>	
+								<option value="ch">ch</option>	
+								<option value="rem">rem</option>	
+								<option value="vmin">vmin</option>	
+								<option value="vmax">vmax</option>	
+								<option value="cm">cm</option>	
+								<option value="mm">mm</option>	
+								<option value="in">in</option>	
+								<option value="pt">pt</option>	
+								<option value="pc">pc</option>	
+							</select></td>
+						</tr>
+						<tr>
+							<td>Space</td>
+							<td><input id="spaceValue" type="number" value="50"></td>
+							<td><select id="spaceUnit">
+								<option value="px">px</option>	
+								<option value="em">em</option>	
+								<option value="vw">vw</option>	
+								<option value="vh">vh</option>	
+								<option value="ex">ex</option>	
+								<option value="ch">ch</option>	
+								<option value="rem">rem</option>	
+								<option value="vmin">vmin</option>	
+								<option value="vmax">vmax</option>	
+								<option value="cm">cm</option>	
+								<option value="mm">mm</option>	
+								<option value="in">in</option>	
+								<option value="pt">pt</option>	
+								<option value="pc">pc</option>	
+							</select></td>
+						</tr>
+						<tr>
+							<td></td>
 							<td>
-								<input onclick="doSomething(color.value, count.value, widthValue.value, widthUnit.value, spaceValue.value, spaceUnit.value)" type="button" value="Submit">
+								<input onclick="cubeSimple(color.value, count.value, widthValue.value, widthUnit.value, spaceValue.value, spaceUnit.value)" type="button" value="Submit">
 							</td>
-						<td></td>
-					</tr>
-				</table>
-			</form>
+						</tr>
+						<tr>
+							<td height="25px"></td>
+						</tr>
+						<tr>
+							<td>Advanced:</td>
+						</tr>
+						<tr>
+							<td>Color Format</td>
+							<td><select id="color">
+								<option value="rgb">RGB</option>
+								<option value="hsl">HSL</option>
+								<option value="yuv">YUV</option>
+							</select></td>
+						</tr>
+						<tr><td>Count: X</td><td><input id="xCount" min="2" type="number" value="5"></td></tr>
+						<tr><td>Count: Y</td><td><input id="yCount" min="2" type="number" value="6"></td></tr>
+						<tr><td>Count: Z</td><td><input id="zCount" min="2" type="number" value="7"></td></tr>
+						
+						<tr><td>Width: X</td><td><input id="xWidth" min="0" type="text" value="50px"></td></tr>
+						<tr><td>Width: Y</td><td><input id="yWidth" min="0" type="text" value="60px"></td></tr>
+						<tr><td>Width: Z</td><td><input id="zWidth" min="0" type="text" value="70px"></td></tr>
+						
+						<tr><td>Space: X</td><td><input id="xSpace" min="0" type="text" value="50px"></td></tr>
+						<tr><td>Space: Y</td><td><input id="ySpace" min="0" type="text" value="60px"></td></tr>
+						<tr><td>Space: Z</td><td><input id="zSpace" min="0" type="text" value="70px"></td></tr>
+
+						<tr>
+							<td></td>
+							<td>
+								<input onclick="cubeAdv(color.value, count.value, xCount.value, yCount.value, zCount.value, xSpace.value, ySpace.value, zSpace.value, xWidth.value, yWidth.value, zWidth.value)" type="button" value="Submit">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
 
 			<script>
-			function doSomething(color, count, widthValue, widthUnit, spaceValue, spaceUnit) {
+			function cubeSimple(color, count, widthValue, widthUnit, spaceValue, spaceUnit) {
 				var width = widthValue + widthUnit;
 				var space = spaceValue + spaceUnit;
-
 				instSCube("#superCube", color, {Count:count, Width:width, Space:space})
 				return false;
 			}
+
+			function cubeAdv(color, count, xCount, yCount, zCount, xSpace, ySpace, zSpace, xWidth, yWidth, zWidth) {
+				var sCube = {xCount:xCount, yCount:yCount, zCount:zCount, xSpace:xSpace, ySpace:ySpace, zSpace:zSpace, xWidth:xWidth, yWidth:yWidth, zWidth:zWidth};
+				instSCube("#superCube", color, sCube)
+				return false;
+			}
 			</script>
-
-			<!--<form onsubmit="return doSomething();" class="my-form">
-				<input type="submit" value="Submit">
-			</form>-->
-
-			<div id="superCube" class="superCube">
-
+			<div id="superCubeContainer">
+				<div id="superCube" class="superCube">
+			</div>
 			</div>
 		</div>
 

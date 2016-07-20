@@ -44,13 +44,9 @@ function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 }
 
 // Creates a cube cluster with certain parametrs.
-// I: target - the div that will be filled with the cluster; type - color format of the cube; sCube - object with the sCube parameters; id - id used for the cluster elements.
-function instSCube (target, type, sCube, id = "") {
-
-	if (id != "") {
-		id += "_";
-	}
-
+// I: target - the div that will be filled with the cluster; type - color format of the cube; sCube - object with the sCube parameters.
+function instSCube (target, type, sCube) {
+	
 	if (objectSize(sCube) == 3) {
 		sCube.xCount = sCube.yCount = sCube.zCount = sCube.Count;
 		sCube.xWidth = sCube.yWidth = sCube.zWidth = sCube.Width;
@@ -64,13 +60,13 @@ function instSCube (target, type, sCube, id = "") {
 
 	$(target).empty();
 
-	$(target).css("width", max);
+	$(target).css("width", 'calc(' + sCube.xWidth + ' * ' + sCube.xCount + ' + ' + sCube.xSpace + ' * ' + (sCube.xCount - 1) + ')');
 	$(target).css("height", max);
 
 	for (x = 0; x < sCube.xCount; x++) {
 		for (y = 0; y < sCube.yCount; y++) {
 			for (z = 0; z < sCube.zCount; z++) {
-				objId = id + "x" + x + "y" + y + "z" + z;
+				objId = "x" + x + "y" + y + "z" + z;
 				objClass = "x" + x + " y" + y + " z" + z;
 				instCube(target, objId, sCube.xWidth, sCube.yWidth, sCube.zWidth);
 				transform("#" + objId, 
