@@ -91,31 +91,20 @@ function instSCube (target, type, sCube, id = undefined) {
 						zpos:'calc((' + z + ' - (' + sCube.zCount + ' - 1) / 2 ) * (' + sCube.zWidth + ' + ' + sCube.zSpace + '))'
 					});
 				$("#" + objId).addClass(objClass);
+				var color = [Math.round(255/(sCube.xCount-1)*x), Math.round(255/(sCube.yCount-1)*y), Math.round(255/(sCube.zCount-1)*z)];
 				if (type == "rgb") {
-					var color_r = Math.round(255/(sCube.xCount-1)*x);
-					var color_g = Math.round(255/(sCube.yCount-1)*y);
-					var color_b = Math.round(255/(sCube.zCount-1)*z);
-
-					$("#" + objId).children().css( "background-color", 'rgba(' + color_r + ', ' + color_g + ', ' + color_b + ', 1)');
+					$("#" + objId).children().css( "background-color", rgb2hex(color[0], color[1], color[2]));
 				} else if (type == "hsl") {
-					var color_h = Math.round(255/(sCube.xCount-1)*x);
-					var color_s = Math.round(100/(sCube.yCount-1)*y);
-					var color_l = Math.round(100/(sCube.zCount-1)*z);
-
-					$("#" + objId).children().css( 'background-color', 'hsla(' + color_h + ', ' + color_s + '%, ' + color_l + '%, 1)');
+					$("#" + objId).children().css( "background-color", hsl2hex(color[0], color[1], color[2]));
 				} else if (type == "yuv") {
-					var color_y = Math.round(255/(sCube.xCount-1)*x);
-					var color_u = Math.round(255/(sCube.yCount-1)*y);
-					var color_v = Math.round(255/(sCube.zCount-1)*z);
-					
-					$("#" + objId).children().css( "background-color", yuv2hex(color_y, color_u, color_v));
+					$("#" + objId).children().css( "background-color", yuv2hex(color[0], color[1], color[2]));
 				}
 			}
 		}
 	}
 }
 
-// Converts YUV color to hexadecimal.
+// Converts YUV color to a hex color code.
 // I: y - brightness; u/v - chroma.
 function yuv2hex(y,u,v) {
 	var r,g,b;
@@ -133,15 +122,64 @@ function yuv2hex(y,u,v) {
 	if (b<0) b=0;
 	else if (b>255) b=255;
 
-	r=r.toString(16);
-	g=g.toString(16);
-	b=b.toString(16);
+	return rgb2hex(r,g,b);
+}
+
+// Converts RGB color to a hex color code.
+// I: r - red component; g - green component; b - blue component.
+function rgb2hex (r,g,b) {
+	
+	r=Math.round(r).toString(16);
+	g=Math.round(g).toString(16);
+	b=Math.round(b).toString(16);
 
 	if (r.length<2) r="0"+r;
 	if (g.length<2) g="0"+g;
 	if (b.length<2) b="0"+b;
 
 	return "#"+r+g+b;
+}
+
+// Converts HSL color to a hex color code.
+// I: h - hue component; s - saturation component; l - lightness component.
+function hsl2hex(h, s, l) {
+	var m1, m2, hue;
+	var r, g, b
+	s /= 255;
+	l /= 255;
+	if (s == 0)
+		r = g = b = (l * 255);
+	else {
+		if (l <= 0.5)
+			m2 = l * (s + 1);
+		else
+			m2 = l + s - l * s;
+		m1 = l * 2 - m2;
+		hue = h / 255;
+		r = HueToRgb(m1, m2, hue + 1/3);
+		g = HueToRgb(m1, m2, hue);
+		b = HueToRgb(m1, m2, hue - 1/3);
+	}
+	return rgb2hex(r,g,b);
+}
+
+function HueToRgb(m1, m2, hue) {
+	var v;
+	if (hue < 0)
+		hue += 1;
+	else if (hue > 1)
+		hue -= 1;
+
+	if (6 * hue < 1)
+		v = m1 + (m2 - m1) * hue * 6;
+	else if (2 * hue < 1)
+		v = m2;
+	else if (3 * hue < 2)
+		v = m1 + (m2 - m1) * (2/3 - hue) * 6;
+	else
+		v = m1;
+
+	return 255 * v;
 }
 
 // Returns the amount of attributes in an object.
