@@ -45,27 +45,16 @@ function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 
 // Creates a cube cluster with certain parametrs.
 // I: target - the div that will be filled with the cluster; type - color format of the cube; sCube - object with the sCube parameters; id - id used for the cluster elements.
-function instSCube (target, type, sCube, id = undefined) {
+function instSCube (target, type, sCube, id = "") {
 
-	// sCubeFill(mode);
-
-	if (id == undefined || id == "") {
-		id = "";
-	} else {
+	if (id != "") {
 		id += "_";
 	}
 
 	if (objectSize(sCube) == 3) {
-		sCube.xCount = sCube.Count;
-		sCube.yCount = sCube.Count;
-		sCube.zCount = sCube.Count;
-		sCube.xWidth = sCube.Width;
-		sCube.yWidth = sCube.Width;
-		sCube.zWidth = sCube.Width;
-		sCube.xSpace = sCube.Space;
-		sCube.ySpace = sCube.Space;
-		sCube.zSpace = sCube.Space;
-		console.log("tick");
+		sCube.xCount = sCube.yCount = sCube.zCount = sCube.Count;
+		sCube.xWidth = sCube.yWidth = sCube.zWidth = sCube.Width;
+		sCube.xSpace = sCube.ySpace = sCube.zSpace = sCube.Space;
 	}
 
 	max = Math.max(parseInt(sCube.xWidth) + parseInt(sCube.xSpace), parseInt(sCube.yWidth) + parseInt(sCube.ySpace), parseInt(sCube.zWidth) + parseInt(sCube.zSpace));
