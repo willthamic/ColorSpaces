@@ -47,21 +47,18 @@ function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 // I: target - the div that will be filled with the cluster; type - color format of the cube; sCube - object with the sCube parameters.
 function instSCube (target, type, sCube) {
 	
+	console.log(type);
+
 	if (objectSize(sCube) == 3) {
 		sCube.xCount = sCube.yCount = sCube.zCount = sCube.Count;
 		sCube.xWidth = sCube.yWidth = sCube.zWidth = sCube.Width;
 		sCube.xSpace = sCube.ySpace = sCube.zSpace = sCube.Space;
 	}
 
-	max = Math.max(parseInt(sCube.xWidth) + parseInt(sCube.xSpace), parseInt(sCube.yWidth) + parseInt(sCube.ySpace), parseInt(sCube.zWidth) + parseInt(sCube.zSpace));
-	if (parseInt(sCube.xWidth) + parseInt(sCube.xSpace) == max) {max = 'calc(' + sCube.xWidth + ' * ' + sCube.xCount + ' + ' + sCube.xSpace + ' * ' + (sCube.xCount - 1) + ')'};
-	if (parseInt(sCube.yWidth) + parseInt(sCube.ySpace) == max) {max = 'calc(' + sCube.yWidth + ' * ' + sCube.yCount + ' + ' + sCube.ySpace + ' * ' + (sCube.yCount - 1) + ')'};
-	if (parseInt(sCube.zWidth) + parseInt(sCube.zSpace) == max) {max = 'calc(' + sCube.zWidth + ' * ' + sCube.zCount + ' + ' + sCube.zSpace + ' * ' + (sCube.zCount - 1) + ')'};
-
 	$(target).empty();
 
 	$(target).css("width", 'calc(' + sCube.xWidth + ' * ' + sCube.xCount + ' + ' + sCube.xSpace + ' * ' + (sCube.xCount - 1) + ')');
-	$(target).css("height", max);
+	$(target).css("height", 'calc(' + sCube.yWidth + ' * ' + sCube.yCount + ' + ' + sCube.ySpace + ' * ' + (sCube.yCount - 1) + ')');
 
 	for (x = 0; x < sCube.xCount; x++) {
 		for (y = 0; y < sCube.yCount; y++) {
