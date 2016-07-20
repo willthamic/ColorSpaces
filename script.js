@@ -1,3 +1,5 @@
+// Transforms an element with x, y and z position and rotation.
+// I: obj - A jquery selector for the element; transform - an object with xpos, ypos, zpos, xrot, yrot and zrot attributes with appropriate unit suffix.
 function transform (obj, transform={}) {
 	if (transform.xpos == undefined) {transform.xpos = 0};
 	if (transform.ypos == undefined) {transform.ypos = 0};
@@ -9,10 +11,14 @@ function transform (obj, transform={}) {
 	$(obj).css("transform", 'translate3d(' + transform.xpos + ', ' + transform.ypos + ', ' + transform.zpos + ') rotateX(' + transform.xrot + ') rotateY(' + transform.yrot + ') rotateZ(' + transform.zrot + ')');
 }
 
+// Creates a div with certain parameters.
+// I: parent - A jquery selector for the divs parent; objId - The id of the div; width - width of the div; height - height of the div; objClass - class for the div (optional).
 function instDiv (parent, objId, width, height, objClass="") {
 	$(parent).append('<div id="' + objId + '" class="' + objClass + '" style="width:' + width + '; height:' + height + ';"></div>');
 }
 
+// Creates a cube with certain parameters.
+// I: parent - A jquery selector for the parent of the cube; id - id of the cube, also affects cube faces ids; xlen - length of cube on x axis; ylen/zlen - length of cube on y/z axis (optional).
 function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 	max = Math.max(parseInt(xlen), parseInt(ylen), parseInt(zlen));
 
@@ -37,6 +43,8 @@ function instCube (parent, id, xlen, ylen=xlen, zlen=xlen) {
 	transform('#' + id + '_f', {zpos:'calc(' + zlen + ' /  2)', xpos:'calc((' + zlen + ' - ' + xlen + ') / 2)', ypos:'calc((' + zlen + ' - ' + ylen + ') / 2)'})
 }
 
+// Creates a cube cluster with certain parametrs.
+// I: target - the div that will be filled with the cluster; type - color format of the cube; sCube - object with the sCube parameters; id - id used for the cluster elements.
 function instSCube (target, type, sCube, id = undefined) {
 
 	// sCubeFill(mode);
@@ -100,14 +108,16 @@ function instSCube (target, type, sCube, id = undefined) {
 					var color_u = Math.round(255/(sCube.yCount-1)*y);
 					var color_v = Math.round(255/(sCube.zCount-1)*z);
 					
-					$("#" + objId).children().css( "background-color", yuv2rgb(color_y, color_u, color_v));
+					$("#" + objId).children().css( "background-color", yuv2hex(color_y, color_u, color_v));
 				}
 			}
 		}
 	}
 }
 
-function yuv2rgb(y,u,v) {
+// Converts YUV color to hexadecimal.
+// I: y - brightness; u/v - chroma.
+function yuv2hex(y,u,v) {
 	var r,g,b;
 
 	r = Math.floor(y + 1.4075 * (v - 128));
@@ -134,6 +144,7 @@ function yuv2rgb(y,u,v) {
 	return "#"+r+g+b;
 }
 
+// Returns the amount of attributes in an object.
 function objectSize(the_object) {
 	var object_size = 0;
 	for (key in the_object){
