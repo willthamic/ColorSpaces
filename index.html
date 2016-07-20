@@ -11,24 +11,24 @@
 	<body>
 
 		<div class="container">
-			<div class="controls">
+			<form class="controls">
 				<table>
 					<tr>
 						<td>Color Format</td>
-						<td><select>
-							<option value="RGB">RGB</option>
-							<option value="HSL">HSL</option>
-							<option value="YUV">YUV</option>
+						<td><select id="color">
+							<option value="rgb">RGB</option>
+							<option value="hsl">HSL</option>
+							<option value="yuv">YUV</option>
 						</select></td>
 					</tr>
 					<tr>
 						<td>Count</td>
-						<td><input min="2" type="number"></td>
+						<td><input id="count" min="2" type="number" value="5"></td>
 					</tr>
 					<tr>
 						<td>Width</td>
-						<td><input type="number"></td>
-						<td><select>
+						<td><input id="widthValue" type="number" value="50"></td>
+						<td><select id="widthUnit">
 							<option value="px">px</option>	
 							<option value="em">em</option>	
 							<option value="vw">vw</option>	
@@ -47,8 +47,8 @@
 					</tr>
 					<tr>
 						<td>Space</td>
-						<td><input type="number"></td>
-						<td><select>
+						<td><input id="spaceValue" type="number" value="50"></td>
+						<td><select id="spaceUnit">
 							<option value="px">px</option>	
 							<option value="em">em</option>	
 							<option value="vw">vw</option>	
@@ -65,8 +65,30 @@
 							<option value="pc">pc</option>	
 						</select></td>
 					</tr>
+					<tr>
+						<td></td>
+							<td>
+								<input onclick="doSomething(color.value, count.value, widthValue.value, widthUnit.value, spaceValue.value, spaceUnit.value)" type="button" value="Submit">
+							</td>
+						<td></td>
+					</tr>
 				</table>
-			</div>
+			</form>
+
+			<script>
+			function doSomething(color, count, widthValue, widthUnit, spaceValue, spaceUnit) {
+				var width = widthValue + widthUnit;
+				var space = spaceValue + spaceUnit;
+
+				instSCube("#superCube", color, {Count:count, Width:width, Space:space})
+				return false;
+			}
+			</script>
+
+			<!--<form onsubmit="return doSomething();" class="my-form">
+				<input type="submit" value="Submit">
+			</form>-->
+
 			<div id="superCube" class="superCube">
 
 			</div>
